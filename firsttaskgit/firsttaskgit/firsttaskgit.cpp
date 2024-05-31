@@ -5,9 +5,28 @@
 
 using namespace std;
 
+
+
+int fib(int n) {
+    if (n <= 2) {
+        return 1;
+    }
+    else {
+        return fib(n - 1) + fib(n - 2);
+    }
+}
+
 int main()
 {
+    setlocale(LC_ALL, "RUS");
+
     cout << "Hello World!\n";
+
+    cout << "Введите количество числе Фиббоначи: ";
+    int n; cin >> n; 
+    cout << "fib(" << n << ") = " << fib(n) << endl;
+
+    return 0;
 }
 
 // Запуск программы: CTRL+F5 или меню "Отладка" > "Запуск без отладки"
