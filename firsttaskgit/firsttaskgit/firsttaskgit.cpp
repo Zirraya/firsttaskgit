@@ -2,32 +2,31 @@
 //
 
 #include <iostream>
+#include <numeric>
+#include <functional>
+#include <vector>
 
 using namespace std;
 
 
 
-int fib(int n) {
-    if (n == 0) {
-        return 0;
-    }
-    else if (n == 1) {
-        return 1;
-    }
-    else {
-        int a = 0;
-        int b = 1;
-        int c;
+vector<int> generateFibonacciNumbers(int n) {
+    vector<int> fibonacciNumbers(n);
 
-        for (int i = 3; i <= n; i++) {
-            c = a + b;
-            a = b;
-            b = c;
-        }
-
-        return b; // Возвращаем b, так как последовательность начинается с 0, 1, ...
+    if (n > 0) {
+        fibonacciNumbers[0] = 0;
     }
+    if (n > 1) {
+        fibonacciNumbers[1] = 1;
+    }
+
+    for (int i = 2; i < n; ++i) {
+        fibonacciNumbers[i] = fibonacciNumbers[i - 1] + fibonacciNumbers[i - 2];
+    }
+
+    return fibonacciNumbers;
 }
+
 
 int main()
 {
@@ -37,7 +36,15 @@ int main()
 
     cout << "Введите количество числе Фиббоначи: ";
     int n; cin >> n; 
-    cout << "fib(" << n << ") = " << fib(n) << endl;
+    
+    vector<int> fibonacciNumbers = generateFibonacciNumbers(n);
+
+    cout << "Первые " << n << " Числа Фибоначчи: ";
+    for (int num : fibonacciNumbers) {
+        cout << num << " ";
+    }
+    cout << endl;
+
 
     return 0;
 }
